@@ -23,20 +23,38 @@ sudo apt-get install jenkins --assume-yes
 echo 'Jenkins successfully installer : password '
 
 # Docker installation
-sudo apt install apt-transport-https ca-certificates curl software-properties-common --assume-yes
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable'
-apt-cache policy docker-ce
-sudo apt install docker-ce --assume-yes
+# sudo apt install apt-transport-https ca-certificates curl software-properties-common --assume-yes
+# sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+# sudo add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable'
+# apt-cache policy docker-ce
+# sudo apt install docker-ce --assume-yes
+# sudo chmod 777 /var/run/docker.sock
+
+sudo apt-get update
+sudo apt-get install ca-certificates curl -y
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo \"$VERSION_CODENAME\") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin --assume-yes
 sudo chmod 777 /var/run/docker.sock
 
 # sudo systemctl status docker
 echo 'Docker successfully installer'
 
 # install docker compose
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose 
-sudo chmod +x /usr/local/bin/docker-compose
-docker-compose --version
+# sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose 
+# sudo chmod +x /usr/local/bin/docker-compose
+# docker-compose --version
+sudo apt-get update
+sudo apt-get install docker-compose-plugin --assume-yes
+docker compose version
 echo "Docker Compose Installed successfully installer"
 
 # nginx installation for testing purpose
