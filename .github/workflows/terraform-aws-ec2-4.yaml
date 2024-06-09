@@ -38,6 +38,8 @@ jobs:
       - name: Terraform init
         id: init
         run: terraform init -lock=false
+        env:
+          TF_API_TOKEN: ${{secrets.TF_API_TOKEN}}
 
       - name: Terraform format
         id: fmt
