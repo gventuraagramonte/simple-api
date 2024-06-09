@@ -2,10 +2,10 @@ variable "awsprops" {
   type = map(any)
   default = {
     region       = "us-east-1"
-    vpc          = "vpc-0870a91879f2b8d8f"
+    vpc          = "vpc-d0e60eb9"
     ami          = "ami-09040d770ffe2224f"
     itype        = "t2.micro"
-    subnet       = "subnet-0b6a5066daea462ec"
+    subnet       = ["subnet-1f092055","subnet-5207f03b","subnet-ea323b92"]
     publicip     = true
     keyname      = "cerberus"
     secgroupname = "cerberus"
