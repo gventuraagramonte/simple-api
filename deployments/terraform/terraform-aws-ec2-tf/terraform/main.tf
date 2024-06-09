@@ -81,7 +81,7 @@ resource "aws_instance" "project-iac-2" {
     type = "ssh"
     host = self.public_ip
     user = "ubuntu"
-    private_key = file("./cerberus")
+    private_key = file("./cerberus.pem")
   }
 }
 
