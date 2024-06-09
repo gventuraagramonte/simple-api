@@ -89,6 +89,12 @@ resource "aws_instance" "project-iac-2" {
   }
 }
 
+resource "aws_vpc_security_group_egress_rule" "allow_traffic_ipv4" {
+  security_group_id = aws_security_group.prod-sec-sg.id
+  cidr_ipv4 = "0.0.0.0/0"
+  ip_protocol = "-1"
+}
+
 output "ec2instance" {
   value = aws_instance.project-iac-2.public_ip
 }
