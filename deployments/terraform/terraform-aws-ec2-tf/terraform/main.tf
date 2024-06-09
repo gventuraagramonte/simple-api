@@ -37,12 +37,6 @@ resource "aws_security_group" "prod-sec-sg" {
   }
 }
 
-resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv4" {
-  security_group_id = aws_security_group.prod-sec-sg.id
-  cidr_ipv4 = "0.0.0.0/0"
-  ip_protocol = "-1"
-}
-
 resource "aws_instance" "project-iac-2" {
   ami                         = lookup(var.awsprops, "ami")
   instance_type               = lookup(var.awsprops, "itype")
