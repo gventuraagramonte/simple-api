@@ -35,11 +35,15 @@ jobs:
         with:
           terraform_version: 1.8.5
 
+      - name: Setup Terraform file
+        uses: StudistCorporation/actions-setup-terraform-credentials@v1.0.0
+        with:
+          token: ${{secrets.TF_API_TOKEN}}
+
+
       - name: Terraform init
         id: init
         run: terraform init -lock=false
-        env:
-          TF_API_TOKEN: ${{secrets.TF_API_TOKEN}}
 
       - name: Terraform format
         id: fmt
