@@ -18,6 +18,7 @@ resource "aws_security_group" "prod-sec-sg" {
 
   // Habilitamos SSH
   dynamic "ingress" {
+
     for_each = var.ingress_rules
     content {
       from_port = lookup(ingress.value, "from_port",null)
@@ -27,13 +28,6 @@ resource "aws_security_group" "prod-sec-sg" {
     }
   }
 
-  egress = {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
   tags = {
     Name = "allow_tls"
   }
@@ -41,6 +35,12 @@ resource "aws_security_group" "prod-sec-sg" {
   lifecycle {
     create_before_destroy = false
   }
+}
+
+resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv4" {
+  security_group_id = aws_security_group.prod-sec-sg.id
+  cidr_ipv4 = "0.0.0.0/0"
+  ip_protocol = "-1"
 }
 
 resource "aws_instance" "project-iac-2" {
