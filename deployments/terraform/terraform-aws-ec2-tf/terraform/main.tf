@@ -2,10 +2,10 @@ variable "awsprops" {
   type = map(any)
   default = {
     region       = "us-east-1"
-    vpc          = "vpc-d0e60eb9"
+    vpc          = "vpc-0870a91879f2b8d8f"
     ami          = "ami-09040d770ffe2224f"
     itype        = "t2.micro"
-    subnet       = ["subnet-1f092055","subnet-5207f03b","subnet-ea323b92"]
+    subnet       = "subnet-0b6a5066daea462ec"
     publicip     = true
     keyname      = "cerberus"
     secgroupname = "cerberus"
@@ -24,7 +24,7 @@ terraform {
 
 resource "aws_security_group" "prod-sec-sg" {
   name = var.instance_secgroupname
-  vpc_id = var.instance_vpc_id
+  vpc_id = "vpc-0870a91879f2b8d8f"
 
   // Habilitamos SSH
   dynamic "ingress" {
