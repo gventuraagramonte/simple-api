@@ -12,6 +12,16 @@ variable "awsprops" {
   }
 }
 
+terraform {
+  cloud {
+    organization = "GiorgioDev"
+
+    workspaces {
+      name = "simple-api"
+    }
+  }
+}
+
 resource "aws_security_group" "prod-sec-sg" {
   name = var.instance_secgroupname
   vpc_id = var.instance_vpc_id

@@ -1,9 +1,9 @@
 terraform {
-  cloud {
+  backend "remote" {
+    hostname = "app.terraform.io"
     organization = "GiorgioDev"
-
     workspaces {
-      name = "simple-api"
+      prefix = "simple-api"
     }
   }
 }

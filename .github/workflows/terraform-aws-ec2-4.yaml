@@ -28,12 +28,7 @@ jobs:
 
     steps:
       - name: Checkout the repository to the runner
-        uses: actions/checkout@v2
-
-      - name: Setup Terraform with specified version on the runner
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.8.5
+        uses: actions/checkout@v3
 
       - name: Setup Terraform file
         uses: StudistCorporation/actions-setup-terraform-credentials@v1.0.0
