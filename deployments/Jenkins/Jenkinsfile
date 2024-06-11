@@ -18,7 +18,7 @@ pipeline {
     stages {
         stage('Environment'){
         steps {
-            sh 'node --version'
+            // sh 'node --version'
                 git url: 'https://github.com/gventuraagramonte/simple-api.git'
                 }
         }
