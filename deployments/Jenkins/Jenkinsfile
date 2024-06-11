@@ -24,11 +24,12 @@ pipeline {
                 }
         }
         
-        // stage('Build'){
-        //     steps {
-        //         sh 'docker build -t giorgio0603/simple-api:latest --no-cache .'
-        //     }
-        // }
+        stage('Build'){
+            steps {
+                sh 'docker build -t giorgio0603/simple-api:latest --no-cache .'
+                sh 'echo imagen compilada'
+            }
+        }
         
         // stage('Login'){
         //     steps {
