@@ -19,27 +19,28 @@ pipeline {
         stage('Environment'){
         steps {
             // sh 'node --version'
-                git url: 'https://github.com/gventuraagramonte/simple-api.git'
+                git branch: 'main', url: 'https://github.com/gventuraagramonte/simple-api.git'
+                sh 'echo repositorio clonado'
                 }
         }
         
-        stage('Build'){
-            steps {
-                sh 'docker build -t giorgio0603/simple-api:latest --no-cache .'
-            }
-        }
+        // stage('Build'){
+        //     steps {
+        //         sh 'docker build -t giorgio0603/simple-api:latest --no-cache .'
+        //     }
+        // }
         
-        stage('Login'){
-            steps {
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-            }
-        }
+        // stage('Login'){
+        //     steps {
+        //         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        //     }
+        // }
 
-        stage('Docker Push') {
-            steps {
-                sh 'docker images'
-                sh 'docker push giorgio0603/simple-api:latest'
-            }
-        }
+        // stage('Docker Push') {
+        //     steps {
+        //         sh 'docker images'
+        //         sh 'docker push giorgio0603/simple-api:latest'
+        //     }
+        // }
     }
 }
